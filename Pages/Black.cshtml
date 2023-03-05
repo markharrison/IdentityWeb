@@ -1,0 +1,29 @@
+﻿@page
+@model IdentityWeb.Pages.BlackModel
+@{
+    ViewData["Title"] = Model.vColor;
+}
+<h1>@ViewData["Title"]</h1>
+
+@Html.Raw(Model.vCircle)
+<br />
+<br />
+<p>Endpoint:&nbsp;<span style='color: green'>@Html.Raw(Model.vEndPoint)</span></p>
+<table>
+    <tr>
+        <td>
+            <form method="POST" asp-page="BlackR">
+                <input name="submitread" type="submit" value="Black.Read">
+            </form>
+        </td>
+        <td>
+            <form method="POST" asp-page="BlackRW">
+                <input name="submitreadwrite" type="submit" value="Black.ReadWrite">
+            </form>
+        </td>
+
+    </tr>
+</table>
+<br />
+<p>@Html.Raw(Model.vHTML)</p>
+<hr />

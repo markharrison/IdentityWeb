@@ -1,0 +1,26 @@
+﻿@page
+@model IdentityWeb.Pages.YellowRModel
+@{
+    ViewData["Title"] = Model.vColor;
+}
+<h1>@ViewData["Title"]</h1>
+
+@Html.Raw(Model.vCircle)
+<br />
+<br />
+<p>Endpoint:&nbsp;<span style='color: green'>@Html.Raw(Model.vEndPoint)</span></p>
+<p>Scope:&nbsp;<span style='color: green'>@Html.Raw(Model.vScope)</span></p>
+<table>
+    <tr>
+        <td>
+            <form method="POST" asp-page="YellowR">
+                <input name="submitread" type="submit" value="Yellow.Read">
+            </form>
+        </td>
+
+    </tr>
+</table>
+<br />
+<p>@Html.Raw(Model.vHTML)</p>
+<hr />
+

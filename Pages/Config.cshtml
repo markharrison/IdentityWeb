@@ -1,0 +1,52 @@
+﻿@page
+@model ConfigModel
+@{
+    ViewData["Title"] = "Configuration";
+}
+<h1>@ViewData["Title"]</h1>
+
+@using (Html.BeginForm())
+{
+    <style>
+
+        td {
+            padding: 10px;
+        }
+    </style>
+    <table>
+        <tr>
+            <td>
+                <span>Red API Url:</span>
+            </td>
+            <td><input size="75" asp-for="RedAPIURL" /></td>
+        </tr>
+        <tr>
+            <td>
+                <span>Yellow API Url:</span>
+            </td>
+            <td><input size="75" asp-for="YellowAPIURL" /></td>
+        </tr>
+        <tr>
+            <td>
+                <span>Black API Url:</span>
+            </td>
+            <td><input size="75" asp-for="BlackAPIURL" /></td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp;
+            </td>
+            <td>
+                <input type="submit" id="Submit" value="Submit">
+            </td>
+        </tr>
+
+    </table>
+
+
+
+    
+}
+<br />
+<p style="color: red;">@Html.Raw(Model.ErrorMessage)</p>
+<hr />

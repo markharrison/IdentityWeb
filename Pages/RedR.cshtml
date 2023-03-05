@@ -1,0 +1,26 @@
+﻿@page
+@model IdentityWeb.Pages.RedRModel
+@{
+    ViewData["Title"] = Model.vColor;
+}
+<h1>@ViewData["Title"]</h1>
+
+@Html.Raw(Model.vCircle)
+<br />
+<br />
+<p>Endpoint:&nbsp;<span style='color: green'>@Html.Raw(Model.vEndPoint)</span></p>
+<p>Scope:&nbsp;<span style='color: green'>@Html.Raw(Model.vScope)</span></p>
+<table>
+    <tr>
+        <td>
+            <form method="POST" asp-page="RedR">
+                <input name="submitread" type="submit" value="Red.Read">
+            </form>
+        </td>
+
+    </tr>
+</table>
+<br />
+<p>@Html.Raw(Model.vHTML)</p>
+<hr />
+

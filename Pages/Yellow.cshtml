@@ -1,0 +1,29 @@
+﻿@page
+@model IdentityWeb.Pages.YellowModel
+@{
+    ViewData["Title"] = Model.vColor;
+}
+<h1>@ViewData["Title"]</h1>
+
+@Html.Raw(Model.vCircle)
+<br />
+<br />
+<p>Endpoint:&nbsp;<span style='color: green'>@Html.Raw(Model.vEndPoint)</span></p>
+<table>
+    <tr>
+        <td>
+            <form method="POST" asp-page="YellowR">
+                <input name="submitread" type="submit" value="Yellow.Read">
+            </form>
+        </td>
+        <td>
+            <form method="POST" asp-page="YellowRW">
+                <input name="submitreadwrite" type="submit" value="Yellow.ReadWrite">
+            </form>
+        </td>
+
+    </tr>
+</table>
+<br />
+<p>@Html.Raw(Model.vHTML)</p>
+<hr />
