@@ -59,12 +59,6 @@ builder.Services.Configure<CookieAuthenticationOptions>(CookieAuthenticationDefa
             options.Events = new RejectSessionCookieWhenAccountNotInCacheEvents();
         });
 
-builder.Services.Configure<ForwardedHeadersOptions>(options =>
-{
-    options.ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor | 
-                               Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto;
-});
-
 builder.Services.AddAuthorization(options =>
 {
     options.FallbackPolicy = options.DefaultPolicy;
@@ -74,33 +68,37 @@ builder.Services.AddSingleton(new AppConfig(builder.Configuration));
 
 builder.Services.AddRazorPages(options =>
 {
-            options.Conventions.AllowAnonymousToPage("/");
-            options.Conventions.AllowAnonymousToPage("/Index");
-            options.Conventions.AllowAnonymousToPage("/AuthFail");
-            options.Conventions.AllowAnonymousToPage("/Error");
-            options.Conventions.AllowAnonymousToPage("/Claims");
-            options.Conventions.AllowAnonymousToPage("/Config");
-            options.Conventions.AllowAnonymousToPage("/AppConfigInfo");
-            options.Conventions.AllowAnonymousToPage("/About");
+    options.Conventions.AllowAnonymousToPage("/");
+    options.Conventions.AllowAnonymousToPage("/Index");
+    options.Conventions.AllowAnonymousToPage("/AuthFail");
+    options.Conventions.AllowAnonymousToPage("/Error");
+    options.Conventions.AllowAnonymousToPage("/Claims");
+    options.Conventions.AllowAnonymousToPage("/Config");
+    options.Conventions.AllowAnonymousToPage("/AppConfigInfo");
+    options.Conventions.AllowAnonymousToPage("/About");
 
-            options.Conventions.AuthorizePage("/Private");
-            options.Conventions.AuthorizePage("/Red");
-            options.Conventions.AuthorizePage("/Black");
-            options.Conventions.AuthorizePage("/Yellow");
-            options.Conventions.AuthorizePage("/Role");
-            options.Conventions.AuthorizePage("/User");
-        })
+    options.Conventions.AuthorizePage("/Private");
+    options.Conventions.AuthorizePage("/Red");
+    options.Conventions.AuthorizePage("/Black");
+    options.Conventions.AuthorizePage("/Yellow");
+    options.Conventions.AuthorizePage("/Role");
+    options.Conventions.AuthorizePage("/User");
+})
     .AddMicrosoftIdentityUI();
 
 var app = builder.Build();
 
 app.Logger.LogInformation("Started");
 
-app.UseForwardedHeaders(new ForwardedHeadersOptions
-        {
-            ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor | 
-                               Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto
-        });
+var forwardOptions = new ForwardedHeadersOptions
+{
+    ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor |
+                       Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto,
+    RequireHeaderSymmetry = false
+};
+forwardOptions.KnownNetworks.Clear();
+forwardOptions.KnownProxies.Clear();
+app.UseForwardedHeaders(forwardOptions);
 
 if (!app.Environment.IsDevelopment())
 {
