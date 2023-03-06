@@ -59,6 +59,12 @@ builder.Services.Configure<CookieAuthenticationOptions>(CookieAuthenticationDefa
             options.Events = new RejectSessionCookieWhenAccountNotInCacheEvents();
         });
 
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor | 
+                               Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto;
+});
+
 builder.Services.AddAuthorization(options =>
 {
     options.FallbackPolicy = options.DefaultPolicy;
