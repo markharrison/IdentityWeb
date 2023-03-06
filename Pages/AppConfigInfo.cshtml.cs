@@ -26,7 +26,12 @@ public class AppConfigInfoModel : PageModel
         {
             return key + ": <span style='color: blue'>" + value + "</span><br/>";
         }
-        
+
+        string EchoDataBull(string key, string value)
+        {
+            return EchoData("&nbsp;&bull;&nbsp;" + key, value);
+        }
+
         vHTML = "";
         vHTML += EchoData("OS Description", System.Runtime.InteropServices.RuntimeInformation.OSDescription);
         vHTML += EchoData("Framework Description", System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription);
@@ -45,8 +50,32 @@ public class AppConfigInfoModel : PageModel
             vHTML += EchoData("APIURLBlack", _appconfig.APIURLBlack);
             vHTML += EchoData("ScopesBlackRead", _appconfig.ScopesBlackRead);
             vHTML += EchoData("ScopesBlackReadWrite", _appconfig.ScopesBlackReadWrite);
-        }
-    }
 
+            vHTML += "RequestInfo: <br/>";
+            vHTML += EchoDataBull("host", HttpContext.Request.Host.ToString());
+            vHTML += EchoDataBull("ishttps", HttpContext.Request.IsHttps.ToString());
+            vHTML += EchoDataBull("method", HttpContext.Request.Method.ToString());
+            vHTML += EchoDataBull("path", HttpContext.Request.Path.ToString());
+            vHTML += EchoDataBull("pathbase", HttpContext.Request.PathBase.ToString());
+            vHTML += EchoDataBull("pathbase", HttpContext.Request.Protocol.ToString());
+            vHTML += EchoDataBull("pathbase", HttpContext.Request.QueryString.ToString());
+            vHTML += EchoDataBull("scheme", HttpContext.Request.Scheme.ToString());
+
+            vHTML += "Headers: <br/>";
+            foreach (var key in HttpContext.Request.Headers.Keys)
+            {
+                vHTML += EchoDataBull(key, $"{HttpContext.Request.Headers[key]}");
+            }
+
+            vHTML += "Connection:<br/>";
+            vHTML += EchoDataBull("localipaddress", HttpContext.Connection.LocalIpAddress?.ToString() ?? "null");
+            vHTML += EchoDataBull("localport", HttpContext.Connection.LocalPort.ToString());
+            vHTML += EchoDataBull("remoteipaddress", HttpContext.Connection.RemoteIpAddress?.ToString() ?? "null");
+            vHTML += EchoDataBull("remoteport", HttpContext.Connection.RemotePort.ToString());
+
+
+        }
+
+    }
 
 }
