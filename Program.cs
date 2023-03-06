@@ -262,17 +262,18 @@ async Task OnRedirectToIdentityProviderFunc(RedirectContext ctx)
 
         returnuri += ctx.HttpContext?.Request.QueryString;
 
-        //string? returnuri = ctx.HttpContext?.Request.Headers.Referer.ToString().ToLower();
-        //if (returnuri is null || returnuri.Contains("/authfail") || returnuri.Contains("/microsoftidentity/account/signedout"))
-        //{
-        //    returnuri = "/";
-        //}
-
         ctx.ProtocolMessage.State = JsonSerializer.Serialize(new
         {
             returnuri,
             rand = Guid.NewGuid().ToString()
         });
+
+
+        if (!ctx.ProtocolMessage.RedirectUri.StartsWith("https") && !ctx.ProtocolMessage.RedirectUri.Contains("localhost"))
+        {
+            ctx.ProtocolMessage.RedirectUri = ctx.ProtocolMessage.RedirectUri.Replace("http", "https");
+        }
+
     }
 
     await Task.CompletedTask.ConfigureAwait(false);
