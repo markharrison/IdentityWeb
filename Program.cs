@@ -96,7 +96,10 @@ var app = builder.Build();
 
 app.Logger.LogInformation("Started");
 
-app.UseForwardedHeaders();
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+        {
+            ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto
+        });
 
 if (!app.Environment.IsDevelopment())
 {
