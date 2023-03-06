@@ -90,6 +90,8 @@ var app = builder.Build();
 
 app.Logger.LogInformation("Started");
 
+app.UseForwardedHeaders();
+
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
