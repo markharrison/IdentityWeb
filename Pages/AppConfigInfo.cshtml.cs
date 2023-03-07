@@ -38,6 +38,7 @@ public class AppConfigInfoModel : PageModel
         vHTML += EchoData("ASPNETCORE_ENVIRONMENT", (_config.GetValue<string>("ASPNETCORE_ENVIRONMENT")) ?? "");
         vHTML += EchoData("ENVIRONMENT", (_config.GetValue<string>("ENVIRONMENT")) ?? "");
         vHTML += EchoData("BuildIdentifier", (_config.GetValue<string>("BuildIdentifier")) ?? "");
+        vHTML += EchoData("ASPNETCORE_FORWARDEDHEADERS_ENABLED", (_config.GetValue<string>("ASPNETCORE_FORWARDEDHEADERS_ENABLED")) ?? "");
 
         if (_appconfig.AdminPW == HttpContext.Request.Query["pw"].ToString())
         {

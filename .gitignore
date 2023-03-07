@@ -354,3 +354,5 @@ MigrationBackup/
 /appsettings.Development.json
 /package-lock.json
 .vscode/
+/infra/config.development.txt
+ 

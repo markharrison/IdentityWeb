@@ -1,0 +1,32 @@
+
+RG="AppService-rg"
+APPNAME="markidentityweb"
+
+
+az webapp config appsettings set -g $RG -n $APPNAME --settings AdminPW=
+
+az webapp config appsettings set -g $RG -n $APPNAME --settings AzureAd__Instance="https://login.microsoftonline.com/"
+az webapp config appsettings set -g $RG -n $APPNAME --settings AzureAd__Domain="markharrison.io"
+az webapp config appsettings set -g $RG -n $APPNAME --settings AzureAd__TenantId=""
+az webapp config appsettings set -g $RG -n $APPNAME --settings AzureAd__ClientId=""
+az webapp config appsettings set -g $RG -n $APPNAME --settings AzureAd__ClientSecret=""
+az webapp config appsettings set -g $RG -n $APPNAME --settings AzureAd__CallbackPath="/signin-oidc"
+
+
+az webapp config appsettings set -g $RG -n $APPNAME --settings APIURLRed="https://xxx/red"
+az webapp config appsettings set -g $RG -n $APPNAME --settings ScopesRedRead="api://xxxx/Red.Read"
+az webapp config appsettings set -g $RG -n $APPNAME --settings ScopesRedReadWrite="api://xxxx/Red.ReadWrite"
+
+
+az webapp config appsettings set -g $RG -n $APPNAME --settings APIURLYellow="https://xxx/yellow"
+az webapp config appsettings set -g $RG -n $APPNAME --settings ScopesYellowRead="api://xxxx/Yellow.Read"
+az webapp config appsettings set -g $RG -n $APPNAME --settings ScopesYellowReadWrite="api://xxxx/Yellow.ReadWrite"
+
+az webapp config appsettings set -g $RG -n $APPNAME --settings APIURLBlack="https://xxx/black"
+az webapp config appsettings set -g $RG -n $APPNAME --settings ScopesBlackRead="api://xxxx/Black.Read"
+az webapp config appsettings set -g $RG -n $APPNAME --settings ScopesBlackReadWrite="api://xxxx/Black.ReadWrite"
+
+az webapp config appsettings set -g $RG -n $APPNAME --settings ScopesGraph="User.Read"
+
+az webapp config appsettings set -g $RG -n $APPNAME --settings ASPNETCORE_FORWARDEDHEADERS_ENABLED=false
+
