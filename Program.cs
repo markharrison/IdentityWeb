@@ -92,8 +92,9 @@ app.Logger.LogInformation("Started");
 
 var forwardOptions = new ForwardedHeadersOptions
 {
-    ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor |
-                       Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto,
+    ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto,
+    // ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor |
+    //                    Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto,
     RequireHeaderSymmetry = false
 };
 forwardOptions.KnownNetworks.Clear();
@@ -269,10 +270,15 @@ async Task OnRedirectToIdentityProviderFunc(RedirectContext ctx)
         });
 
 
+        ctx.HttpContext?.RequestServices?.GetService<ILogger<Program>>()?.LogInformation(">>>>1 " + ctx.ProtocolMessage.RedirectUri);
+
         if (!ctx.ProtocolMessage.RedirectUri.StartsWith("https") && !ctx.ProtocolMessage.RedirectUri.Contains("localhost"))
         {
             ctx.ProtocolMessage.RedirectUri = ctx.ProtocolMessage.RedirectUri.Replace("http", "https");
+            ctx.HttpContext?.RequestServices?.GetService<ILogger<Program>>()?.LogInformation(">>>>2 " + ctx.ProtocolMessage.RedirectUri);
         }
+
+        ctx.HttpContext?.RequestServices?.GetService<ILogger<Program>>()?.LogInformation(">>>>3 " + ctx.ProtocolMessage.RedirectUri);
 
     }
 
