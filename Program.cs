@@ -90,16 +90,16 @@ var app = builder.Build();
 
 app.Logger.LogInformation("Started");
 
-var forwardOptions = new ForwardedHeadersOptions
-{
-    ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto,
-    // ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor |
-    //                    Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto,
-    RequireHeaderSymmetry = false
-};
-forwardOptions.KnownNetworks.Clear();
-forwardOptions.KnownProxies.Clear();
-app.UseForwardedHeaders(forwardOptions);
+// var forwardOptions = new ForwardedHeadersOptions
+// {
+//     ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto,
+//     // ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor |
+//     //                    Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto,
+//     RequireHeaderSymmetry = false
+// };
+// forwardOptions.KnownNetworks.Clear();
+// forwardOptions.KnownProxies.Clear();
+// app.UseForwardedHeaders(forwardOptions);
 
 if (!app.Environment.IsDevelopment())
 {
