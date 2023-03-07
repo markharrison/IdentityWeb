@@ -269,17 +269,6 @@ async Task OnRedirectToIdentityProviderFunc(RedirectContext ctx)
             rand = Guid.NewGuid().ToString()
         });
 
-
-        ctx.HttpContext?.RequestServices?.GetService<ILogger<Program>>()?.LogInformation(">>>>1 " + ctx.ProtocolMessage.RedirectUri);
-
-        if (!ctx.ProtocolMessage.RedirectUri.StartsWith("https") && !ctx.ProtocolMessage.RedirectUri.Contains("localhost"))
-        {
-            ctx.ProtocolMessage.RedirectUri = ctx.ProtocolMessage.RedirectUri.Replace("http", "https");
-            ctx.HttpContext?.RequestServices?.GetService<ILogger<Program>>()?.LogInformation(">>>>2 " + ctx.ProtocolMessage.RedirectUri);
-        }
-
-        ctx.HttpContext?.RequestServices?.GetService<ILogger<Program>>()?.LogInformation(">>>>3 " + ctx.ProtocolMessage.RedirectUri);
-
     }
 
     await Task.CompletedTask.ConfigureAwait(false);
