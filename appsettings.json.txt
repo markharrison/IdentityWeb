@@ -1,0 +1,34 @@
+{
+  "AzureAd": {
+    "Instance": "https://login.microsoftonline.com/",
+    // "Domain": "markharrison.io",
+    // "TenantId": "xxxx-xxxx-xxxx-xxxx-xxxx",
+    // "ClientId": "xxxx-xxxx-xxxx-xxxx-xxxx",
+    // "ClientSecret": "xxxxxxxx",
+    "CallbackPath": "/signin-oidc"
+
+  },
+  // "APIURLRed": "https://xxxxapi.azurewebsites.net/red",
+  // "ScopesRedRead": "api://xxxx/Red.Read",
+  // "ScopesRedReadWrite": "api://xxxx/Red.ReadWrite",
+  // "APIURLYellow": "https://xxxxapi.azurewebsites.net/yellow",
+  // "ScopesYellowRead": "api://xxxx/Yellow.Read",
+  // "ScopesYellowReadWrite": "api://xxxx/Yellow.ReadWrite",
+  // "APIURLBlack": "https://xxxxapi.azurewebsites.net/black",
+  // "ScopesBlackRead": "api://xxxx/Black.Read",
+  // "ScopesBlackReadWrite": "api://xxxx/Black.ReadWrite",
+
+  "ScopesGraph": "User.Read",
+
+  "BuildIdentifier": "#{BuildIdentifier}#",  
+
+  // "ASPNETCORE_FORWARDEDHEADERS_ENABLED"=true,
+ 
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*"
+}
