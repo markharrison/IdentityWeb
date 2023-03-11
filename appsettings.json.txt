@@ -1,4 +1,5 @@
 {
+  "AdminPW": "XX",
   "AzureAd": {
     "Instance": "https://login.microsoftonline.com/",
     // "Domain": "markharrison.io",

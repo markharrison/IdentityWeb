@@ -36,12 +36,19 @@ public class AppConfigInfoModel : PageModel
         vHTML += EchoData("OS Description", System.Runtime.InteropServices.RuntimeInformation.OSDescription);
         vHTML += EchoData("Framework Description", System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription);
         vHTML += EchoData("ASPNETCORE_ENVIRONMENT", (_config.GetValue<string>("ASPNETCORE_ENVIRONMENT")) ?? "");
-        vHTML += EchoData("ENVIRONMENT", (_config.GetValue<string>("ENVIRONMENT")) ?? "");
-        vHTML += EchoData("BuildIdentifier", (_config.GetValue<string>("BuildIdentifier")) ?? "");
-        vHTML += EchoData("ASPNETCORE_FORWARDEDHEADERS_ENABLED", (_config.GetValue<string>("ASPNETCORE_FORWARDEDHEADERS_ENABLED")) ?? "");
+        vHTML += EchoData("ENVIRONMENT", _config.GetValue<string>("ENVIRONMENT") ?? "");
+        vHTML += EchoData("BuildIdentifier", _config.GetValue<string>("BuildIdentifier") ?? "");
+        vHTML += EchoData("ASPNETCORE_FORWARDEDHEADERS_ENABLED", _config.GetValue<string>("ASPNETCORE_FORWARDEDHEADERS_ENABLED") ?? "");
 
         if (_appconfig.AdminPW == HttpContext.Request.Query["pw"].ToString())
         {
+            vHTML += EchoData("Instance", _config.GetValue<string>("BuildIdentifier") ?? "");
+            vHTML += EchoData("Domain", _config.GetValue<string>("Domain") ?? "");
+            vHTML += EchoData("TenantId", _config.GetValue<string>("TenantId") ?? "");
+            vHTML += EchoData("ClientId", _config.GetValue<string>("ClientId") ?? "");
+            vHTML += EchoData("ClientSecret", _config.GetValue<string>("ClientSecret") ?? "");
+            vHTML += EchoData("CallbackPath", _config.GetValue<string>("CallbackPath") ?? "");
+
             vHTML += EchoData("APIURLRed", _appconfig.APIURLRed);
             vHTML += EchoData("ScopesRedRead", _appconfig.ScopesRedRead);
             vHTML += EchoData("ScopesRedReadWrite", _appconfig.ScopesRedReadWrite);
