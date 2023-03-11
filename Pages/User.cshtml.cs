@@ -104,7 +104,7 @@ public class UserModel : PageModel
 
         if (graphToken.StartsWith("ey"))
         {
-            string jwtlink = $"<br/><a href='https://jwt.ms/#access_token={graphToken}' class='inspectjwt' target='_blank'>Inspect JWT</a>";
+            string jwtlink = $"<a href='https://jwt.ms/#access_token={graphToken}' class='inspectjwt' target='_blank'>Inspect JWT</a>";
             vHTML += $"Access Token: &#123;&nbsp;{jwtlink}&nbsp;&#125;<br />";
         };
 
