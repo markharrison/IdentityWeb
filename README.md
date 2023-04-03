@@ -39,6 +39,6 @@ Environment variables / configuration
 
 ## Package 
 
-<https://github.com/markharrison/IdentityWeb/pkgs/container/identityweb>
+<https://github.com/users/markharrison/packages/container/package/identityweb>
 
 
